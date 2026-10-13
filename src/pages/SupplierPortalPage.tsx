@@ -48,10 +48,10 @@ export const SupplierPortalPage: React.FC = () => {
   };
 
   return (
-    <div className="bg-[#F8FAF8] min-h-screen pb-20">
+    <div className="bg-[#F8FAF8] min-h-screen pb-32 lg:pb-20">
       
       {/* Top Banner */}
-      <div className="bg-[#102B2A] text-white py-10 px-4 sm:px-6">
+      <div className="bg-[#102B2A] text-white py-8 sm:py-10 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="space-y-2 max-w-xl">
             <span className="text-xs font-bold uppercase tracking-wider text-[#F0AD45]">
@@ -60,7 +60,7 @@ export const SupplierPortalPage: React.FC = () => {
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold font-display">
               LPGmart Supplier Portal
             </h1>
-            <p className="text-sm text-emerald-100/80">
+            <p className="text-xs sm:text-sm text-emerald-100/80">
               Manage incoming orders, delivery fleet, inventory, and expand your cooking gas business across Lagos.
             </p>
           </div>
@@ -90,20 +90,20 @@ export const SupplierPortalPage: React.FC = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 sm:pt-8">
         
         {activePortalTab === 'dashboard' ? (
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8">
             
             {/* Depot Status Header */}
-            <div className="bg-white rounded-3xl border border-[#E1E8E3] p-6 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-              <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-2xl bg-[#0C4940] text-white flex items-center justify-center text-3xl font-bold">
+            <div className="bg-white rounded-2xl sm:rounded-3xl border border-[#E1E8E3] p-4 sm:p-6 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="flex items-center gap-3.5">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#0C4940] text-white flex items-center justify-center text-2xl sm:text-3xl font-bold shrink-0">
                   🌿
                 </div>
                 <div>
-                  <div className="flex items-center gap-2">
-                    <h2 className="font-bold text-lg text-[#102B2A]">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <h2 className="font-bold text-base sm:text-lg text-[#102B2A]">
                       GreenGas Energy (Ikeja Depot #1)
                     </h2>
                     <span className="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">
@@ -111,17 +111,18 @@ export const SupplierPortalPage: React.FC = () => {
                     </span>
                   </div>
                   <p className="text-xs text-[#697570]">
-                    Plot 14 Commercial Avenue, Ikeja · NMDPRA License: <strong>LPG/LG/2026/894</strong>
+                    Plot 14 Commercial Avenue, Ikeja · NMDPRA: <strong>LPG/LG/2026/894</strong>
                   </p>
                 </div>
               </div>
 
               {/* Online / Offline switch */}
-              <div className="flex items-center gap-3 bg-[#F3F6F4] p-2 px-3.5 rounded-2xl border border-slate-200">
+              <div className="flex items-center justify-between sm:justify-start w-full sm:w-auto gap-3 bg-[#F3F6F4] p-2 px-3.5 rounded-2xl border border-slate-200">
                 <span className="text-xs font-bold text-[#102B2A]">
-                  Depot Receiving Orders:
+                  Receiving Orders:
                 </span>
                 <button
+                  type="button"
                   onClick={() => {
                     setSupplierIsOnline(!supplierIsOnline);
                     showToast(supplierIsOnline ? 'Depot set to OFFLINE' : 'Depot set to ONLINE');
@@ -133,13 +134,13 @@ export const SupplierPortalPage: React.FC = () => {
                   }`}
                 >
                   <span className={`w-2 h-2 rounded-full ${supplierIsOnline ? 'bg-white' : 'bg-slate-500'}`} />
-                  <span>{supplierIsOnline ? 'Online (Accepting)' : 'Offline (Paused)'}</span>
+                  <span>{supplierIsOnline ? 'Online' : 'Offline'}</span>
                 </button>
               </div>
             </div>
 
-            {/* KPI Metrics */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {/* KPI Metrics: 2x2 grid on mobile */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
               <div className="bg-white rounded-3xl border border-[#E1E8E3] p-5 shadow-xs space-y-2">
                 <div className="flex items-center justify-between text-xs text-[#697570]">
                   <span>Today's Total Sales</span>

@@ -10,6 +10,7 @@ import { Footer } from './components/Footer';
 import { RefillModal } from './components/RefillModal';
 import { SafetyModal } from './components/SafetyModal';
 import { Toast } from './components/Toast';
+import { MobileBottomNav } from './components/MobileBottomNav';
 
 import { HomePage } from './pages/HomePage';
 import { SuppliersPage } from './pages/SuppliersPage';
@@ -77,6 +78,9 @@ const AppContent: React.FC = () => {
       <RefillModal />
       <SafetyModal />
       <Toast />
+
+      {/* Persistent Mobile Bottom Navigation Bar */}
+      <MobileBottomNav />
     </div>
   );
 };

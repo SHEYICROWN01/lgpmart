@@ -1,6 +1,15 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
-import { Filter, ChevronRight, SlidersHorizontal, Check, Search, ShieldCheck } from 'lucide-react';
+import {
+  Filter,
+  ChevronRight,
+  SlidersHorizontal,
+  Check,
+  Search,
+  ShieldCheck,
+  X,
+  RotateCcw,
+} from 'lucide-react';
 import { MOCK_PRODUCTS } from '../data/mockData';
 import { Product } from '../types';
 
@@ -27,6 +36,16 @@ export const ShopPage: React.FC = () => {
     { id: 'cookers', label: 'Burners & Cookers' },
     { id: 'safety', label: 'Safety Equipment' },
   ];
+
+  const priceRanges = [
+    { id: 'all', label: 'All Prices' },
+    { id: 'under-10k', label: 'Under ₦10,000' },
+    { id: '10k-30k', label: '₦10,000 – ₦30,000' },
+    { id: '30k-50k', label: '₦30,000 – ₦50,000' },
+    { id: 'above-50k', label: 'Above ₦50,000' },
+  ];
+
+  const brands = ['all', 'TotalEnergies', 'Oando', 'Nipco', 'GCE', 'StoveMaster'];
 
   const filteredProducts = MOCK_PRODUCTS.filter((product) => {
     if (activeCategory !== 'all' && product.category !== activeCategory) {
@@ -56,32 +75,68 @@ export const ShopPage: React.FC = () => {
     navigateTo('product-detail');
   };
 
+  const resetAllFilters = () => {
+    setActiveCategory('all');
+    setSelectedPriceRange('all');
+    setSelectedBrand('all');
+    setSearchQuery('');
+  };
+
+  const activeFilterCount =
+    (activeCategory !== 'all' ? 1 : 0) +
+    (selectedPriceRange !== 'all' ? 1 : 0) +
+    (selectedBrand !== 'all' ? 1 : 0) +
+    (searchQuery ? 1 : 0);
+
   return (
-    <div className="bg-[#F8FAF8] min-h-screen pb-20">
+    <div className="bg-[#F8FAF8] min-h-screen pb-28 lg:pb-20">
       
       {/* Header Banner */}
-      <div className="bg-[#102B2A] text-white py-10 px-4 sm:px-6">
+      <div className="bg-[#102B2A] text-white py-8 sm:py-10 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto space-y-2">
           <div className="flex items-center gap-2 text-xs text-emerald-300">
-            <span onClick={() => navigateTo('home')} className="hover:underline cursor-pointer">
+            <button onClick={() => navigateTo('home')} className="hover:underline cursor-pointer">
               Home
-            </span>
+            </button>
             <ChevronRight className="w-3 h-3" />
             <span className="text-white font-semibold">Cylinders & Accessories Marketplace</span>
           </div>
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold font-display">
             Gas Cylinders & Accessories
           </h1>
-          <p className="text-sm text-emerald-100/80 max-w-xl">
+          <p className="text-xs sm:text-sm text-emerald-100/80 max-w-xl">
             Certified LPG cylinders, precision regulators, reinforced hoses, and gas cookers delivered directly to your doorstep in Lagos.
           </p>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-8">
+      {/* Mobile Horizontal Quick-Category Chips (One-tap filter) */}
+      <div className="lg:hidden bg-white border-b border-[#E1E8E3] py-2.5 px-4 sticky top-16 z-20 shadow-xs">
+        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5">
+          {categories.map((cat) => {
+            const isActive = activeCategory === cat.id;
+            return (
+              <button
+                key={cat.id}
+                type="button"
+                onClick={() => setActiveCategory(cat.id)}
+                className={`whitespace-nowrap px-3.5 py-1.5 rounded-full text-xs font-bold transition-all shrink-0 cursor-pointer ${
+                  isActive
+                    ? 'bg-[#168568] text-white shadow-xs'
+                    : 'bg-[#F3F6F4] text-[#697570] hover:text-[#102B2A]'
+                }`}
+              >
+                {cat.label}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 sm:pt-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          {/* Left Filter Sidebar (Col-3) */}
+          {/* Desktop Left Filter Sidebar (Col-3) */}
           <div className="hidden lg:block lg:col-span-3 space-y-6">
             
             {/* Search filter input */}
@@ -96,7 +151,7 @@ export const ShopPage: React.FC = () => {
                   placeholder="e.g. 12.5kg, regulator..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="bg-transparent text-xs w-full focus:outline-none"
+                  className="bg-transparent text-sm sm:text-xs w-full focus:outline-none"
                 />
               </div>
             </div>
@@ -112,6 +167,7 @@ export const ShopPage: React.FC = () => {
                   return (
                     <li key={cat.id}>
                       <button
+                        type="button"
                         onClick={() => setActiveCategory(cat.id)}
                         className={`w-full text-left py-1.5 px-2.5 rounded-lg transition-colors cursor-pointer flex items-center justify-between ${
                           isActive
@@ -134,17 +190,11 @@ export const ShopPage: React.FC = () => {
                 Price Range (₦)
               </h3>
               <div className="space-y-2 text-xs text-[#172321]">
-                {[
-                  { id: 'all', label: 'All Prices' },
-                  { id: 'under-10k', label: 'Under ₦10,000' },
-                  { id: '10k-30k', label: '₦10,000 – ₦30,000' },
-                  { id: '30k-50k', label: '₦30,000 – ₦50,000' },
-                  { id: 'above-50k', label: 'Above ₦50,000' },
-                ].map((range) => (
+                {priceRanges.map((range) => (
                   <label key={range.id} className="flex items-center gap-2 cursor-pointer">
                     <input
                       type="radio"
-                      name="priceRange"
+                      name="priceRangeDesktop"
                       checked={selectedPriceRange === range.id}
                       onChange={() => setSelectedPriceRange(range.id)}
                       className="text-[#168568] focus:ring-[#168568]"
@@ -163,11 +213,11 @@ export const ShopPage: React.FC = () => {
                 Brand / Manufacturer
               </h3>
               <div className="space-y-2 text-xs text-[#172321]">
-                {['all', 'TotalEnergies', 'Oando', 'Nipco', 'GCE', 'StoveMaster'].map((b) => (
+                {brands.map((b) => (
                   <label key={b} className="flex items-center gap-2 cursor-pointer">
                     <input
                       type="radio"
-                      name="brandFilter"
+                      name="brandFilterDesktop"
                       checked={selectedBrand === b}
                       onChange={() => setSelectedBrand(b)}
                       className="text-[#168568] focus:ring-[#168568]"
@@ -193,69 +243,72 @@ export const ShopPage: React.FC = () => {
 
           </div>
 
-          {/* Right Product Grid (Col-9) */}
-          <div className="lg:col-span-9 space-y-6">
+          {/* Right Product Grid Area (Col-9) */}
+          <div className="lg:col-span-9 space-y-5">
             
-            {/* Top Toolbar: Result count + Sort dropdown */}
-            <div className="bg-white p-4 rounded-2xl border border-[#E1E8E3] flex flex-wrap items-center justify-between gap-4">
+            {/* Top Toolbar: Result count + Mobile Filter Button + Sort dropdown */}
+            <div className="bg-white p-3.5 sm:p-4 rounded-2xl border border-[#E1E8E3] flex flex-wrap items-center justify-between gap-3 shadow-xs">
               <div className="text-xs text-[#697570]">
-                Showing <strong className="text-[#102B2A]">{filteredProducts.length}</strong> items in catalogue
+                Showing <strong className="text-[#102B2A]">{filteredProducts.length}</strong> products
               </div>
 
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2.5">
+                {/* Real Working Mobile Filter Button */}
                 <button
-                  onClick={() => setMobileFilterOpen(!mobileFilterOpen)}
-                  className="lg:hidden flex items-center gap-1.5 bg-[#F3F6F4] px-3 py-1.5 rounded-lg text-xs font-semibold"
+                  type="button"
+                  onClick={() => setMobileFilterOpen(true)}
+                  className="lg:hidden flex items-center gap-1.5 bg-[#F3F6F4] hover:bg-[#E1E8E3] px-3.5 py-2 rounded-xl text-xs font-bold text-[#102B2A] transition-colors cursor-pointer active:scale-95"
                 >
-                  <Filter className="w-3.5 h-3.5" />
-                  <span>Filters</span>
+                  <Filter className="w-3.5 h-3.5 text-[#168568]" />
+                  <span>Filter</span>
+                  {activeFilterCount > 0 && (
+                    <span className="bg-[#168568] text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
+                      {activeFilterCount}
+                    </span>
+                  )}
                 </button>
 
-                <div className="flex items-center gap-2 text-xs">
-                  <span className="text-[#697570] font-medium">Sort by:</span>
+                <div className="flex items-center gap-1.5 text-xs">
+                  <span className="text-[#697570] font-medium hidden sm:inline">Sort:</span>
                   <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value)}
-                    className="bg-[#F3F6F4] border border-[#E1E8E3] rounded-lg px-2.5 py-1.5 font-bold text-[#102B2A] focus:outline-none cursor-pointer"
+                    className="bg-[#F3F6F4] border border-[#E1E8E3] rounded-xl px-2.5 py-1.5 font-bold text-[#102B2A] text-xs focus:outline-none cursor-pointer"
                   >
                     <option value="popularity">Most Popular</option>
                     <option value="price-low">Price: Low to High</option>
                     <option value="price-high">Price: High to Low</option>
-                    <option value="rating">Top Customer Rated</option>
+                    <option value="rating">Top Rated</option>
                   </select>
                 </div>
               </div>
             </div>
 
-            {/* Product Grid */}
+            {/* Product Grid: 2 columns on mobile, 3 on tablet, 4 on desktop */}
             {filteredProducts.length === 0 ? (
-              <div className="bg-white rounded-2xl p-12 border border-[#E1E8E3] text-center space-y-3">
-                <p className="text-base font-bold text-[#102B2A]">No products found for this filter combination</p>
+              <div className="bg-white rounded-3xl p-8 sm:p-12 border border-[#E1E8E3] text-center space-y-3">
+                <p className="text-base font-bold text-[#102B2A]">No products found for this filter</p>
                 <p className="text-xs text-[#697570]">Try selecting "All Products" or resetting your price range filter.</p>
                 <button
-                  onClick={() => {
-                    setActiveCategory('all');
-                    setSelectedPriceRange('all');
-                    setSelectedBrand('all');
-                    setSearchQuery('');
-                  }}
-                  className="px-4 py-2 bg-[#168568] text-white text-xs font-semibold rounded-lg"
+                  type="button"
+                  onClick={resetAllFilters}
+                  className="px-4 py-2.5 bg-[#168568] hover:bg-[#0C4940] text-white text-xs font-semibold rounded-xl cursor-pointer"
                 >
                   Clear All Filters
                 </button>
               </div>
             ) : (
-              <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+              <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-5">
                 {filteredProducts.map((product) => (
                   <div
                     key={product.id}
-                    className="bg-white rounded-2xl border border-[#E1E8E3] hover:border-[#168568] p-4 flex flex-col justify-between transition-all hover:shadow-md group"
+                    className="bg-white rounded-2xl border border-[#E1E8E3] hover:border-[#168568] p-3 sm:p-4 flex flex-col justify-between transition-all hover:shadow-md group"
                   >
                     <div>
                       {/* Product Image Frame */}
                       <div
                         onClick={() => handleProductClick(product)}
-                        className="aspect-square rounded-xl bg-[#F8FAF8] mb-3 p-3 flex items-center justify-center cursor-pointer overflow-hidden relative"
+                        className="aspect-square rounded-xl bg-[#F8FAF8] mb-2.5 sm:mb-3 p-2.5 sm:p-3 flex items-center justify-center cursor-pointer overflow-hidden relative"
                       >
                         <img
                           src={product.image}
@@ -264,14 +317,14 @@ export const ShopPage: React.FC = () => {
                           referrerPolicy="no-referrer"
                         />
                         {product.originalPrice && product.originalPrice > product.price && (
-                          <span className="absolute top-2 left-2 bg-[#F0AD45] text-slate-900 text-[10px] font-bold px-1.5 py-0.5 rounded shadow-xs">
+                          <span className="absolute top-1.5 left-1.5 bg-[#F0AD45] text-slate-900 text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded shadow-xs">
                             Save ₦{(product.originalPrice - product.price).toLocaleString()}
                           </span>
                         )}
                       </div>
 
                       <div onClick={() => handleProductClick(product)} className="cursor-pointer space-y-1">
-                        <span className="text-[10px] text-[#697570] uppercase tracking-wider font-semibold block">
+                        <span className="text-[9px] sm:text-[10px] text-[#697570] uppercase tracking-wider font-semibold block">
                           {product.brand}
                         </span>
                         
@@ -279,17 +332,17 @@ export const ShopPage: React.FC = () => {
                           {product.name}
                         </h3>
 
-                        <div className="flex items-center gap-1 text-[11px] text-[#697570]">
+                        <div className="flex items-center gap-1 text-[10px] sm:text-[11px] text-[#697570]">
                           <span className="text-[#F0AD45] font-bold">⭐ {product.rating}</span>
                           <span>({product.reviewCount})</span>
                         </div>
 
-                        <div className="pt-1 flex items-baseline gap-2">
+                        <div className="pt-1 flex flex-wrap items-baseline gap-1.5 sm:gap-2">
                           <span className="font-extrabold text-sm sm:text-base text-[#102B2A] tabular-nums">
                             ₦{product.price.toLocaleString()}
                           </span>
                           {product.originalPrice && (
-                            <span className="text-xs text-slate-400 line-through tabular-nums">
+                            <span className="text-[11px] sm:text-xs text-slate-400 line-through tabular-nums">
                               ₦{product.originalPrice.toLocaleString()}
                             </span>
                           )}
@@ -297,8 +350,9 @@ export const ShopPage: React.FC = () => {
                       </div>
                     </div>
 
-                    <div className="pt-3 mt-2 border-t border-slate-100 flex items-center gap-2">
+                    <div className="pt-2.5 sm:pt-3 mt-2 border-t border-slate-100">
                       <button
+                        type="button"
                         onClick={() => {
                           addToCart({
                             product,
@@ -306,7 +360,7 @@ export const ShopPage: React.FC = () => {
                             serviceType: product.category === 'cylinders' ? 'cylinder' : 'accessory',
                           });
                         }}
-                        className="w-full bg-[#168568] hover:bg-[#0C4940] text-white text-xs font-semibold py-2 rounded-lg transition-colors cursor-pointer"
+                        className="w-full bg-[#168568] hover:bg-[#0C4940] text-white text-xs font-bold py-2 sm:py-2.5 rounded-xl transition-colors cursor-pointer active:scale-95"
                       >
                         Add to Cart
                       </button>
@@ -321,6 +375,138 @@ export const ShopPage: React.FC = () => {
 
         </div>
       </div>
+
+      {/* REAL WORKING MOBILE FILTER DRAWER & BACKDROP */}
+      {mobileFilterOpen && (
+        <div className="fixed inset-0 z-50 lg:hidden flex flex-col justify-end">
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity animate-fadeIn"
+            onClick={() => setMobileFilterOpen(false)}
+            aria-hidden="true"
+          />
+
+          {/* Bottom Sheet Drawer */}
+          <div className="relative w-full bg-white rounded-t-3xl max-h-[85vh] flex flex-col shadow-2xl z-10 animate-slideUp overflow-hidden">
+            {/* Drawer Header */}
+            <div className="p-4 sm:p-5 border-b border-[#E1E8E3] flex items-center justify-between bg-[#102B2A] text-white">
+              <div className="flex items-center gap-2">
+                <SlidersHorizontal className="w-5 h-5 text-[#F0AD45]" />
+                <h3 className="font-bold text-base text-white font-display">
+                  Filter Products ({filteredProducts.length} results)
+                </h3>
+              </div>
+              <button
+                type="button"
+                onClick={() => setMobileFilterOpen(false)}
+                className="w-9 h-9 flex items-center justify-center rounded-xl bg-white/10 hover:bg-white/20 text-white cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Scrollable Filter Body */}
+            <div className="p-5 space-y-6 overflow-y-auto max-h-[calc(85vh-140px)]">
+              {/* Category selector */}
+              <div>
+                <span className="block text-xs font-bold uppercase tracking-wider text-[#102B2A] mb-2.5">
+                  Category
+                </span>
+                <div className="grid grid-cols-2 gap-2">
+                  {categories.map((c) => {
+                    const isSel = activeCategory === c.id;
+                    return (
+                      <button
+                        key={c.id}
+                        type="button"
+                        onClick={() => setActiveCategory(c.id)}
+                        className={`p-2.5 rounded-xl text-xs font-bold text-left transition-all border cursor-pointer ${
+                          isSel
+                            ? 'bg-emerald-50 border-[#168568] text-[#168568]'
+                            : 'bg-white border-[#E1E8E3] text-[#172321]'
+                        }`}
+                      >
+                        {c.label}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Price Range selector */}
+              <div>
+                <span className="block text-xs font-bold uppercase tracking-wider text-[#102B2A] mb-2.5">
+                  Price Range
+                </span>
+                <div className="space-y-2">
+                  {priceRanges.map((pr) => {
+                    const isSel = selectedPriceRange === pr.id;
+                    return (
+                      <label
+                        key={pr.id}
+                        onClick={() => setSelectedPriceRange(pr.id)}
+                        className={`flex items-center justify-between p-2.5 rounded-xl border cursor-pointer text-xs ${
+                          isSel
+                            ? 'bg-emerald-50 border-[#168568] font-bold text-[#168568]'
+                            : 'bg-white border-[#E1E8E3] text-[#172321]'
+                        }`}
+                      >
+                        <span>{pr.label}</span>
+                        {isSel && <Check className="w-4 h-4 text-[#168568]" />}
+                      </label>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Brand selector */}
+              <div>
+                <span className="block text-xs font-bold uppercase tracking-wider text-[#102B2A] mb-2.5">
+                  Brand / Manufacturer
+                </span>
+                <div className="grid grid-cols-2 gap-2">
+                  {brands.map((b) => {
+                    const isSel = selectedBrand === b;
+                    return (
+                      <button
+                        key={b}
+                        type="button"
+                        onClick={() => setSelectedBrand(b)}
+                        className={`p-2.5 rounded-xl text-xs font-bold text-left transition-all border cursor-pointer ${
+                          isSel
+                            ? 'bg-emerald-50 border-[#168568] text-[#168568]'
+                            : 'bg-white border-[#E1E8E3] text-[#172321]'
+                        }`}
+                      >
+                        {b === 'all' ? 'All Brands' : b}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
+            {/* Drawer Footer Actions */}
+            <div className="p-4 border-t border-[#E1E8E3] bg-[#F8FAF8] flex items-center gap-3">
+              <button
+                type="button"
+                onClick={resetAllFilters}
+                className="flex-1 py-3 px-4 border border-[#E1E8E3] bg-white rounded-xl text-xs font-bold text-[#102B2A] hover:bg-slate-100 cursor-pointer flex items-center justify-center gap-1.5"
+              >
+                <RotateCcw className="w-3.5 h-3.5" />
+                <span>Reset</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setMobileFilterOpen(false)}
+                className="flex-2 py-3 px-4 bg-[#168568] hover:bg-[#0C4940] text-white rounded-xl text-xs font-bold cursor-pointer text-center"
+              >
+                Show {filteredProducts.length} Products
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );

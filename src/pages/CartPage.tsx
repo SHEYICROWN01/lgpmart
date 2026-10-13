@@ -24,7 +24,7 @@ export const CartPage: React.FC = () => {
   } = useApp();
 
   return (
-    <div className="bg-[#F8FAF8] min-h-screen pb-20">
+    <div className="bg-[#F8FAF8] min-h-screen pb-32 lg:pb-20">
       
       {/* Breadcrumb */}
       <div className="bg-white border-b border-[#E1E8E3] py-3.5 px-4 sm:px-6">
@@ -37,19 +37,19 @@ export const CartPage: React.FC = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 sm:pt-8">
         
-        <div className="mb-6">
+        <div className="mb-5 sm:mb-6">
           <h1 className="text-2xl sm:text-3xl font-extrabold font-display text-[#102B2A]">
             Your Cart
           </h1>
-          <p className="text-xs text-[#697570] mt-1">
+          <p className="text-xs sm:text-sm text-[#697570] mt-1">
             Review your cooking gas cylinders, refills, and accessories before checkout.
           </p>
         </div>
 
         {cart.length === 0 ? (
-          <div className="bg-white rounded-3xl border border-[#E1E8E3] p-12 text-center max-w-md mx-auto space-y-4 my-10">
+          <div className="bg-white rounded-3xl border border-[#E1E8E3] p-8 sm:p-12 text-center max-w-md mx-auto space-y-4 my-8">
             <div className="w-16 h-16 rounded-2xl bg-emerald-50 text-[#168568] flex items-center justify-center mx-auto">
               <ShoppingBag className="w-8 h-8" />
             </div>
@@ -59,32 +59,34 @@ export const CartPage: React.FC = () => {
             </p>
             <div className="pt-2 flex flex-col sm:flex-row gap-2 justify-center">
               <button
+                type="button"
                 onClick={() => setRefillModalOpen(true)}
-                className="bg-[#168568] text-white text-xs font-semibold px-4 py-2.5 rounded-xl hover:bg-[#0C4940] transition-colors"
+                className="bg-[#168568] hover:bg-[#0C4940] text-white text-xs font-bold px-4 py-3 rounded-xl transition-colors cursor-pointer"
               >
                 Order Gas Refill
               </button>
               <button
+                type="button"
                 onClick={() => navigateTo('shop')}
-                className="border border-[#E1E8E3] text-[#102B2A] text-xs font-semibold px-4 py-2.5 rounded-xl hover:bg-[#F3F6F4] transition-colors"
+                className="border border-[#E1E8E3] text-[#102B2A] hover:bg-[#F3F6F4] text-xs font-bold px-4 py-3 rounded-xl transition-colors cursor-pointer"
               >
                 Shop Accessories
               </button>
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
             
             {/* Cart Items List (Col-8) */}
             <div className="lg:col-span-8 space-y-4">
               
-              <div className="bg-white rounded-3xl border border-[#E1E8E3] p-4 sm:p-6 divide-y divide-slate-100 shadow-xs">
+              <div className="bg-white rounded-2xl sm:rounded-3xl border border-[#E1E8E3] p-4 sm:p-6 divide-y divide-slate-100 shadow-xs">
                 {cart.map((item) => (
-                  <div key={item.id} className="py-5 first:pt-0 last:pb-0 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                  <div key={item.id} className="py-4 sm:py-5 first:pt-0 last:pb-0 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
                     
                     {/* Item info */}
-                    <div className="flex items-center gap-4">
-                      <div className="w-20 h-20 rounded-2xl bg-[#F8FAF8] border border-[#E1E8E3] p-2 flex items-center justify-center shrink-0">
+                    <div className="flex items-center gap-3.5 w-full sm:w-auto">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-[#F8FAF8] border border-[#E1E8E3] p-2 flex items-center justify-center shrink-0">
                         <img
                           src={item.product.image}
                           alt={item.product.name}
@@ -93,13 +95,13 @@ export const CartPage: React.FC = () => {
                         />
                       </div>
 
-                      <div className="space-y-1">
-                        <h3 className="font-bold text-sm sm:text-base text-[#102B2A]">
+                      <div className="space-y-1 min-w-0 flex-1">
+                        <h3 className="font-bold text-sm sm:text-base text-[#102B2A] leading-tight">
                           {item.product.name}
                         </h3>
                         
                         {item.selectedSupplier && (
-                          <span className="text-[11px] text-[#697570] block">
+                          <span className="text-[11px] text-[#697570] block truncate">
                             By {item.selectedSupplier.name} · {item.selectedSupplier.area}
                           </span>
                         )}
@@ -113,18 +115,20 @@ export const CartPage: React.FC = () => {
                         )}
 
                         <span className="font-bold text-xs text-[#168568] block sm:hidden tabular-nums">
-                          ₦{item.product.price.toLocaleString()}
+                          ₦{(item.product.price * item.quantity).toLocaleString()}
                         </span>
                       </div>
                     </div>
 
                     {/* Quantity Stepper & Price */}
-                    <div className="flex items-center justify-between sm:justify-end gap-6 w-full sm:w-auto pt-2 sm:pt-0 border-t sm:border-t-0 border-slate-100">
+                    <div className="flex items-center justify-between sm:justify-end gap-4 sm:gap-6 w-full sm:w-auto pt-2.5 sm:pt-0 border-t sm:border-t-0 border-slate-100">
                       
                       <div className="flex items-center border border-[#E1E8E3] rounded-xl bg-white p-1">
                         <button
+                          type="button"
                           onClick={() => updateQuantity(item.id, -1)}
-                          className="p-1 hover:bg-[#F3F6F4] rounded-lg transition-colors cursor-pointer text-[#697570]"
+                          className="p-1.5 hover:bg-[#F3F6F4] rounded-lg transition-colors cursor-pointer text-[#697570]"
+                          aria-label="Decrease quantity"
                         >
                           <Minus className="w-3.5 h-3.5" />
                         </button>
@@ -132,26 +136,30 @@ export const CartPage: React.FC = () => {
                           {item.quantity}
                         </span>
                         <button
+                          type="button"
                           onClick={() => updateQuantity(item.id, 1)}
-                          className="p-1 hover:bg-[#F3F6F4] rounded-lg transition-colors cursor-pointer text-[#697570]"
+                          className="p-1.5 hover:bg-[#F3F6F4] rounded-lg transition-colors cursor-pointer text-[#697570]"
+                          aria-label="Increase quantity"
                         >
                           <Plus className="w-3.5 h-3.5" />
                         </button>
                       </div>
 
-                      <div className="text-right min-w-[90px]">
+                      <div className="text-right min-w-[90px] hidden sm:block">
                         <span className="font-extrabold text-sm sm:text-base text-[#102B2A] tabular-nums block">
                           ₦{(item.product.price * item.quantity).toLocaleString()}
                         </span>
-                        <span className="text-[10px] text-[#697570] tabular-nums hidden sm:block">
+                        <span className="text-[10px] text-[#697570] tabular-nums">
                           ₦{item.product.price.toLocaleString()} each
                         </span>
                       </div>
 
                       <button
+                        type="button"
                         onClick={() => removeFromCart(item.id)}
-                        className="text-[#697570] hover:text-red-600 p-1.5 rounded-lg hover:bg-red-50 transition-colors cursor-pointer"
+                        className="text-[#697570] hover:text-red-600 p-2 rounded-xl hover:bg-red-50 transition-colors cursor-pointer"
                         title="Remove item"
+                        aria-label="Remove item"
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
@@ -165,7 +173,7 @@ export const CartPage: React.FC = () => {
               {/* Trust message */}
               <div className="bg-emerald-50/70 border border-emerald-200 rounded-2xl p-4 flex items-center gap-3 text-xs text-emerald-900">
                 <ShieldCheck className="w-5 h-5 text-[#168568] shrink-0" />
-                <span>
+                <span className="leading-relaxed">
                   <strong>LPGmart Guarantee:</strong> Every cylinder is weight-inspected with tare weight deduction and given a free soapy water leak test upon delivery.
                 </span>
               </div>
@@ -174,7 +182,7 @@ export const CartPage: React.FC = () => {
 
             {/* Order Summary Box (Col-4) */}
             <div className="lg:col-span-4 sticky top-24">
-              <div className="bg-white rounded-3xl border border-[#E1E8E3] p-6 shadow-xs space-y-5">
+              <div className="bg-white rounded-2xl sm:rounded-3xl border border-[#E1E8E3] p-5 sm:p-6 shadow-xs space-y-4 sm:space-y-5">
                 <h2 className="font-bold text-base text-[#102B2A] font-display border-b border-slate-100 pb-3">
                   Order Summary
                 </h2>
@@ -208,15 +216,16 @@ export const CartPage: React.FC = () => {
                 </div>
 
                 <button
+                  type="button"
                   onClick={() => navigateTo('checkout')}
-                  className="w-full bg-[#168568] hover:bg-[#0C4940] text-white font-semibold text-sm py-3.5 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full bg-[#168568] hover:bg-[#0C4940] text-white font-bold text-sm py-4 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-95"
                 >
                   <span>Proceed to Checkout</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
 
                 <p className="text-[11px] text-center text-[#697570]">
-                  Pay on delivery with Card/Transfer or pay securely online.
+                  Pay on delivery with Card POS / Transfer or secure online checkout.
                 </p>
               </div>
             </div>

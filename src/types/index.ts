@@ -97,12 +97,14 @@ export interface Order {
     name: string;
     phone: string;
     address: string;
+    logo?: string;
   };
   rider?: {
     name: string;
     phone: string;
     vehiclePlate: string;
     vehicleType: string;
+    vehicle?: string;
     rating: number;
   };
   estimatedDeliveryTime: string;

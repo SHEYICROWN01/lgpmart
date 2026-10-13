@@ -28,7 +28,7 @@ export const SupplierDetailPage: React.FC = () => {
   const supplier = selectedSupplier;
 
   return (
-    <div className="bg-[#F8FAF8] min-h-screen pb-20">
+    <div className="bg-[#F8FAF8] min-h-screen pb-32 lg:pb-20">
       
       {/* Breadcrumb */}
       <div className="bg-white border-b border-[#E1E8E3] py-3.5 px-4 sm:px-6">
