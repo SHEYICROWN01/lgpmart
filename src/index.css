@@ -1,0 +1,27 @@
+@import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'Manrope', system-ui, -apple-system, sans-serif;
+
+  --color-brand-dark: #102B2A;
+  --color-brand-primary: #168568;
+  --color-brand-deep: #0C4940;
+  --color-brand-soft: #F3F6F4;
+  --color-brand-text: #172321;
+  --color-brand-muted: #697570;
+  --color-brand-border: #E1E8E3;
+  --color-brand-amber: #F0AD45;
+  --color-brand-error: #C63D3D;
+}
+
+/* Custom scrollbar and smooth transitions */
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display);
+}

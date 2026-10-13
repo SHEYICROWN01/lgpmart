@@ -1,0 +1,6 @@
+{
+  "name": "LPGmart - Cooking Gas Delivery & Marketplace",
+  "description": "Nigeria's premier on-demand cooking gas delivery, refill service, and certified cylinder & accessories marketplace.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
