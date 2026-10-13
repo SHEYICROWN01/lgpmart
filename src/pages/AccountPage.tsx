@@ -57,7 +57,7 @@ export const AccountPage: React.FC = () => {
             <span className="text-[#102B2A] font-semibold">My Account</span>
           </div>
 
-          <span className="text-[#168568] font-bold">LPGmart Customer Portal</span>
+          <span className="text-[#168568] font-bold">Gas Now Now Customer Portal</span>
         </div>
       </div>
 

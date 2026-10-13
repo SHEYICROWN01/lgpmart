@@ -176,8 +176,8 @@ export const FaqContactPage: React.FC<{ initialTab?: 'faqs' | 'contact' }> = ({ 
                   </div>
                   <div>
                     <span className="font-bold text-[#102B2A] block">Email Support</span>
-                    <a href="mailto:support@lpgmart.ng" className="text-[#168568] font-bold hover:underline">
-                      support@lpgmart.ng
+                    <a href="mailto:support@gasnownow.ng" className="text-[#168568] font-bold hover:underline">
+                      support@gasnownow.ng
                     </a>
                   </div>
                 </div>

@@ -27,7 +27,7 @@ export const HowItWorksPage: React.FC = () => {
             <span className="text-white font-semibold">How It Works</span>
           </div>
           <h1 className="text-3xl sm:text-4xl font-extrabold font-display">
-            How LPGmart Delivers Cooking Gas in Lagos
+            How Gas Now Now Delivers Cooking Gas in Lagos
           </h1>
           <p className="text-sm text-emerald-100/80 max-w-2xl">
             No more lifting heavy cylinders, haggling over arbitrary refill prices, or dealing with underfilled gas bottles. Here is how our on-demand energy platform works.
@@ -90,10 +90,10 @@ export const HowItWorksPage: React.FC = () => {
           ))}
         </div>
 
-        {/* Comparison Table: Traditional vs LPGmart */}
+        {/* Comparison Table: Traditional vs Gas Now Now */}
         <div className="bg-white rounded-3xl border border-[#E1E8E3] p-6 sm:p-8 shadow-xs space-y-6">
           <h2 className="text-xl font-bold font-display text-[#102B2A]">
-            Traditional Gas Refill vs. LPGmart Experience
+            Traditional Gas Refill vs. Gas Now Now Experience
           </h2>
 
           <div className="overflow-x-auto">
@@ -102,7 +102,7 @@ export const HowItWorksPage: React.FC = () => {
                 <tr className="border-b border-[#E1E8E3] text-[#697570] uppercase">
                   <th className="pb-3 font-semibold">Aspect</th>
                   <th className="pb-3 font-semibold text-red-600">Traditional Gas Station</th>
-                  <th className="pb-3 font-semibold text-[#168568]">LPGmart Platform</th>
+                  <th className="pb-3 font-semibold text-[#168568]">Gas Now Now Platform</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 text-[#172321]">

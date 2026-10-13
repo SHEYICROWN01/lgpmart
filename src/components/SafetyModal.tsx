@@ -62,7 +62,7 @@ export const SafetyModal: React.FC = () => {
                   className="inline-flex items-center gap-1.5 bg-[#102B2A] hover:bg-black text-white text-xs font-semibold px-3 py-1.5 rounded-lg transition-colors"
                 >
                   <PhoneCall className="w-3.5 h-3.5 text-[#F0AD45]" />
-                  LPGmart Rapid Support: 0800 123 4567
+                  Gas Now Now Rapid Support: 0800 123 4567
                 </a>
               </div>
             </div>
@@ -122,7 +122,7 @@ export const SafetyModal: React.FC = () => {
             <div>
               <span className="font-bold block mb-0.5">How to Check Cylinder Expiry Date:</span>
               <p className="text-emerald-800">
-                Look at the 3 inner vertical stay plates supporting the top ring collar. You will find markings like <strong>A 28</strong> (Q1 2028), <strong>B 29</strong> (Q2 2029), <strong>C 30</strong> (Q3 2030), or <strong>D 31</strong> (Q4 2031). Never use an expired cylinder. Every cylinder delivered on LPGmart is tested within active certification dates.
+                Look at the 3 inner vertical stay plates supporting the top ring collar. You will find markings like <strong>A 28</strong> (Q1 2028), <strong>B 29</strong> (Q2 2029), <strong>C 30</strong> (Q3 2030), or <strong>D 31</strong> (Q4 2031). Never use an expired cylinder. Every cylinder delivered on Gas Now Now is tested within active certification dates.
               </p>
             </div>
           </div>

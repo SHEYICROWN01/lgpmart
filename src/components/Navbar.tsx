@@ -96,8 +96,8 @@ export const Navbar: React.FC = () => {
               onClick={() => navigateTo('safety')}
               className="text-[11px] text-emerald-200/90 hover:text-white transition-colors cursor-pointer flex items-center gap-1 font-medium"
             >
-              <PhoneCall className="w-3 h-3 text-[#F0AD45]" />
-              <span className="hidden sm:inline">Emergency:</span> 0800-LPG-MART
+              <PhoneCall className="w-3.5 h-3.5 text-[#F0AD45]" />
+              <span className="hidden sm:inline">Emergency:</span> 0800-GAS-NOW
             </button>
           </div>
         </div>
@@ -112,7 +112,7 @@ export const Navbar: React.FC = () => {
             type="button"
             onClick={() => handleNavClick('home')}
             className="flex items-center gap-2 sm:gap-2.5 cursor-pointer text-left focus-visible:outline-none shrink-0"
-            aria-label="LPGmart Home"
+            aria-label="Gas Now Now Home"
           >
             <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-[#168568] to-[#0C4940] flex items-center justify-center text-white shadow-xs">
               <Flame className="w-5 h-5 sm:w-6 sm:h-6 text-[#F0AD45]" />
@@ -120,11 +120,11 @@ export const Navbar: React.FC = () => {
             <div>
               <div className="flex items-baseline">
                 <span className="text-xl sm:text-2xl font-display font-extrabold text-[#102B2A] tracking-tight">
-                  LPG<span className="text-[#168568]">mart</span>
+                  Gas <span className="text-[#168568]">Now Now</span>
                 </span>
               </div>
               <span className="text-[9px] sm:text-[10px] text-[#697570] block tracking-wider uppercase font-medium -mt-1 hidden xs:block">
-                Gas for a Better Life
+                Express Cooking Gas Delivery
               </span>
             </div>
           </button>
@@ -310,10 +310,10 @@ export const Navbar: React.FC = () => {
                   </div>
                   <div>
                     <span className="font-display font-extrabold text-lg text-white">
-                      LPG<span className="text-emerald-400">mart</span>
+                      Gas <span className="text-emerald-400">Now Now</span>
                     </span>
                     <span className="text-[9px] text-emerald-200/70 block uppercase font-medium">
-                      Lagos Gas Marketplace
+                      Express Gas Delivery
                     </span>
                   </div>
                 </div>
@@ -507,10 +507,10 @@ export const Navbar: React.FC = () => {
               <div className="flex items-center justify-between text-xs text-[#697570] pt-1">
                 <span>Emergency Hotline:</span>
                 <a
-                  href="tel:08005746278"
+                  href="tel:0800427669"
                   className="font-bold text-[#168568] hover:underline"
                 >
-                  0800-LPG-MART
+                  0800-GAS-NOW
                 </a>
               </div>
             </div>

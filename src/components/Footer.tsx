@@ -18,10 +18,10 @@ export const Footer: React.FC = () => {
               </div>
               <div>
                 <span className="text-2xl font-display font-extrabold tracking-tight text-white">
-                  LPG<span className="text-[#168568]">mart</span>
+                  Gas <span className="text-[#168568]">Now Now</span>
                 </span>
                 <span className="text-[10px] text-emerald-200/70 block tracking-wider uppercase font-medium">
-                  Gas for a Better Life
+                  Express Cooking Gas Delivery
                 </span>
               </div>
             </div>
@@ -167,8 +167,8 @@ export const Footer: React.FC = () => {
               </div>
               <div className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-[#F0AD45] shrink-0" />
-                <a href="mailto:support@lpgmart.ng" className="hover:text-white">
-                  support@lpgmart.ng
+                <a href="mailto:support@gasnownow.ng" className="hover:text-white">
+                  support@gasnownow.ng
                 </a>
               </div>
               <div className="flex items-center gap-2.5 text-xs text-slate-400">
@@ -182,7 +182,7 @@ export const Footer: React.FC = () => {
 
         {/* Bottom bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
-          <p>© 2026 LPGmart. All rights reserved. Built for Nigerian Homes and Businesses.</p>
+          <p>© 2026 Gas Now Now. All rights reserved. Built for Nigerian Homes and Businesses.</p>
           <div className="flex items-center gap-6">
             <button onClick={() => navigateTo('contact')} className="hover:text-white">
               Privacy Policy

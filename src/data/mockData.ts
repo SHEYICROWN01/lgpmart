@@ -482,6 +482,6 @@ export const SAFETY_TIPS = [
     id: 'safety-4',
     title: 'Emergency Response & Support',
     summary: 'Immediate protocols in case of strong smell, hissing sound, or cylinder failure.',
-    description: 'Do not turn electrical switches ON or OFF (sparks can ignite gas). Extinguish all naked flames. Evacuate premises and call Lagos State Emergency 112 or LPGmart Rapid Safety Line.',
+    description: 'Do not turn electrical switches ON or OFF (sparks can ignite gas). Extinguish all naked flames. Evacuate premises and call Lagos State Emergency 112 or Gas Now Now Rapid Safety Line.',
   },
 ];

@@ -475,7 +475,7 @@ export const CheckoutPage: React.FC = () => {
 
             <div className="space-y-3 text-xs">
               <p className="text-[#697570]">
-                Simulating payment of <strong>₦{cartTotal.toLocaleString()}</strong> to LPGmart Nigeria.
+                Simulating payment of <strong>₦{cartTotal.toLocaleString()}</strong> to Gas Now Now Nigeria.
               </p>
 
               <div>

@@ -31,7 +31,7 @@ export const SafetyPage: React.FC = () => {
             LPG Safety & Consumer Protection Centre
           </h1>
           <p className="text-sm text-emerald-100/80 max-w-2xl">
-            At LPGmart, convenience never compromises safety. Learn how cooking gas works, how to detect micro-leaks, and our strict supplier verification standards in Nigeria.
+            At Gas Now Now, convenience never compromises safety. Learn how cooking gas works, how to detect micro-leaks, and our strict supplier verification standards in Nigeria.
           </p>
         </div>
       </div>
@@ -79,7 +79,7 @@ export const SafetyPage: React.FC = () => {
               className="inline-flex items-center gap-2 bg-[#102B2A] hover:bg-black text-white text-xs font-bold px-5 py-3 rounded-xl transition-all shadow-md"
             >
               <PhoneCall className="w-4 h-4 text-[#F0AD45]" />
-              <span>LPGmart Safety Line: 0800 123 4567</span>
+              <span>Gas Now Now Safety Line: 0800 123 4567</span>
             </a>
           </div>
         </div>
@@ -94,7 +94,7 @@ export const SafetyPage: React.FC = () => {
               The 3-Step Soapy Water Test
             </h2>
             <p className="text-xs text-[#697570]">
-              Every LPGmart dispatch courier performs this test in front of you. You should also perform it whenever replacing a cylinder.
+              Every Gas Now Now dispatch courier performs this test in front of you. You should also perform it whenever replacing a cylinder.
             </p>
           </div>
 

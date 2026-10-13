@@ -58,7 +58,7 @@ export const SupplierPortalPage: React.FC = () => {
               Merchant & Depot Operations
             </span>
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold font-display">
-              LPGmart Supplier Portal
+              Gas Now Now Supplier Portal
             </h1>
             <p className="text-xs sm:text-sm text-emerald-100/80">
               Manage incoming orders, delivery fleet, inventory, and expand your cooking gas business across Lagos.
@@ -335,7 +335,7 @@ export const SupplierPortalPage: React.FC = () => {
                   <Store className="w-8 h-8" />
                 </div>
                 <h2 className="text-2xl font-extrabold font-display text-[#102B2A]">
-                  Register Your Gas Depot on LPGmart
+                  Register Your Gas Depot on Gas Now Now
                 </h2>
                 <p className="text-xs text-[#697570]">
                   Reach thousands of households and businesses in Lagos. We provide the ordering app, logistics dispatch, and secure payments.
