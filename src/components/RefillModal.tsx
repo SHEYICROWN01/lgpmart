@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { X, Check, Shield, MapPin, Truck, Flame, ArrowRight } from 'lucide-react';
-import { REFILL_RATES, MOCK_SUPPLIERS, LAGOS_AREAS } from '../data/mockData';
+import { REFILL_RATES, MOCK_SUPPLIERS, LAGOS_AREAS, ASSET_IMAGES } from '../data/mockData';
 
 export const RefillModal: React.FC = () => {
   const {
@@ -41,10 +41,10 @@ export const RefillModal: React.FC = () => {
       reviewCount: 140,
       image:
         currentRate.size === '6kg'
-          ? '/src/assets/images/gas_cylinder_red_1791888544166.jpg'
+          ? ASSET_IMAGES.cylinderRed
           : currentRate.size === '3kg'
-          ? '/src/assets/images/gas_cylinder_orange_1791888580571.jpg'
-          : '/src/assets/images/gas_cylinder_blue_1791888544072.jpg',
+          ? ASSET_IMAGES.cylinderOrange
+          : ASSET_IMAGES.cylinderBlue,
       description: `${selectedSize} cooking gas refill serviced by ${chosenSupplier.name}. Guaranteed accurate weight calibration and leak inspection.`,
       features: [
         'Accurately measured LPG filling (Tare weight verified)',

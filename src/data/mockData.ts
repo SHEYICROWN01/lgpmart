@@ -1,13 +1,21 @@
 import { Product, Supplier, Order } from '../types';
 
+import heroDelivery from '../assets/images/hero_lpg_delivery_1791888543198.jpg';
+import cylinderBlue from '../assets/images/gas_cylinder_blue_1791888544072.jpg';
+import cylinderRed from '../assets/images/gas_cylinder_red_1791888544166.jpg';
+import cylinderOrange from '../assets/images/gas_cylinder_orange_1791888580571.jpg';
+import regulatorHose from '../assets/images/gas_regulator_accessory_1791888544686.jpg';
+import cooker2Burner from '../assets/images/cooker_2burner_1791888580571.jpg';
+import supplierBanner from '../assets/images/supplier_business_banner_1791888544771.jpg';
+
 export const ASSET_IMAGES = {
-  heroDelivery: '/src/assets/images/hero_lpg_delivery_1791888543198.jpg',
-  cylinderBlue: '/src/assets/images/gas_cylinder_blue_1791888544072.jpg',
-  cylinderRed: '/src/assets/images/gas_cylinder_red_1791888544166.jpg',
-  cylinderOrange: '/src/assets/images/gas_cylinder_orange_1791888580571.jpg',
-  regulatorHose: '/src/assets/images/gas_regulator_accessory_1791888544686.jpg',
-  cooker2Burner: '/src/assets/images/cooker_2burner_1791888580571.jpg',
-  supplierBanner: '/src/assets/images/supplier_business_banner_1791888544771.jpg',
+  heroDelivery,
+  cylinderBlue,
+  cylinderRed,
+  cylinderOrange,
+  regulatorHose,
+  cooker2Burner,
+  supplierBanner,
 };
 
 export const LAGOS_AREAS = [
